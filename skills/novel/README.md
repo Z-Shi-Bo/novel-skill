@@ -33,7 +33,7 @@
 ## 安装
 
 ```powershell
-$env:SKILL_BASE_URL='https://raw.githubusercontent.com/Z-Shi-Bo/novel-skill/main/'
+$env:SKILL_BASE_URL='https://raw.githubusercontent.com/shibo1998/shibo-skills/main/'
 npx skill skills/novel
 ```
 
