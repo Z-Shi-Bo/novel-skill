@@ -1,31 +1,36 @@
-# novel-skill
+# my-skills
 
-这是 `novel` skill 的仓库包装层。
+自用 skill 仓库，按 `skills/<name>/` 组织，便于后续收纳和迭代多个 skill。
 
-真正的 skill 内容在：
+## 当前 skills
 
-```text
-skills/novel/
-```
+- `skills/novel` — 长篇小说项目型 skill
 
 ## 安装
 
-### 用 `npx skill`
+当前 `novel` skill 仍可通过 `npx skill` 安装：
 
 ```powershell
 $env:SKILL_BASE_URL='https://raw.githubusercontent.com/Z-Shi-Bo/novel-skill/main/'
 npx skill skills/novel
 ```
 
-这会把 `skills/novel/` 作为远程 skill 包下载。  
-这里用 raw GitHub 地址，是为了避开 GitHub tree API 的匿名 rate limit。
+## 仓库结构
 
-### 本地 CLI 使用
+```text
+skills/
+└── novel/
+    ├── .gitignore
+    ├── SKILL.md
+    ├── README.md
+    ├── index.json
+    ├── docs/
+    ├── references/
+    └── templates/
+```
 
-本仓库根目录保留了一个轻量 `SKILL.md` 包装层，方便 Claude / Codex / Qoder / Gemini 在本地继续把这个仓库识别为 `novel` skill。
+## 约定
 
-## 开发
-
-- 仓库根目录：分发包装层
-- `skills/novel/`：canonical skill source
-- `.omc/`、`projects/`：本地运行态，不进 git
+- 每个 skill 独立放在 `skills/<name>/`
+- 运行态目录如 `.omc/`、`projects/` 不进 git
+- `index.json` 只列实际分发文件

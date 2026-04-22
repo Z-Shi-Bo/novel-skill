@@ -1,5 +1,4 @@
-.omc/
-projects/
-scripts/__pycache__/
-skills/novel/scripts/__pycache__/
+skills/*/.omc/
+skills/*/projects/
+**/__pycache__/
 *.pyc

@@ -37,15 +37,23 @@ $env:SKILL_BASE_URL='https://raw.githubusercontent.com/Z-Shi-Bo/novel-skill/main
 npx skill skills/novel
 ```
 
-## 关键目录
+## 在仓库中的位置
 
 ```text
 skills/novel/
+```
+
+## skill 内容
+
+```text
+skills/novel/
+├── .gitignore
 ├── SKILL.md
+├── README.md
+├── index.json
 ├── references/
 ├── templates/
-├── docs/
-└── evals/
+└── docs/
 ```
 
 ## 项目结构
