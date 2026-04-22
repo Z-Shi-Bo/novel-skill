@@ -1,0 +1,26 @@
+[
+  {
+    "index": 1,
+    "title": "{{VOLUME_TITLE}}",
+    "theme": "{{VOLUME_THEME}}",
+    "arcs": [
+      {
+        "index": 1,
+        "title": "{{ARC_TITLE}}",
+        "goal": "{{ARC_GOAL}}",
+        "chapters": [
+          {
+            "chapter": {{CHAPTER_NO}},
+            "title": "{{CHAPTER_TITLE}}",
+            "coreEvent": "{{CORE_EVENT}}",
+            "hook": "{{HOOK}}",
+            "scenes": [
+              "{{SCENE_1}}",
+              "{{SCENE_2}}"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

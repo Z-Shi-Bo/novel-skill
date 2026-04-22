@@ -1,0 +1,11 @@
+[
+  {
+    "description": "{{HOOK_DESCRIPTION}}",
+    "plantedChapter": {{CHAPTER_NO}},
+    "status": "planted",
+    "hints": [
+      "{{HINT_1}}",
+      "{{HINT_2}}"
+    ]
+  }
+]

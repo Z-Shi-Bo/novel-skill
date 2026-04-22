@@ -1,0 +1,7 @@
+[
+  {
+    "category": "magic",
+    "rule": "{{WORLD_RULE_NAME}}",
+    "boundary": "{{WORLD_RULE_BOUNDARY}}"
+  }
+]

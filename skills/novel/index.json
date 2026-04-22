@@ -16,6 +16,7 @@
     "references\\research-policy.md",
     "references\\revision-rules.md",
     "references\\workflow.md",
+    "templates\\chapter_context.yaml",
     "templates\\chapter_index.md",
     "templates\\chapter_outline.md",
     "templates\\chapter_summary.md",

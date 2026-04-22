@@ -1,0 +1,14 @@
+[
+  {
+    "name": "{{CHARACTER_NAME}}",
+    "aliases": [],
+    "role": "{{CHARACTER_ROLE}}",
+    "description": "{{CHARACTER_DESCRIPTION}}",
+    "arc": "{{CHARACTER_ARC}}",
+    "traits": [
+      "{{TRAIT_1}}",
+      "{{TRAIT_2}}"
+    ],
+    "tier": "core"
+  }
+]

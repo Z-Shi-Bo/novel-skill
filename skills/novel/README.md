@@ -1,14 +1,21 @@
 # novel
 
-长篇小说项目型 skill。
+长篇小说控制面型 skill。
 
 ## 定位
 
 这不是“一次性写一章”的 prompt，而是一个**文件化、可续写、可审查、可维护**的小说工作台。
 
+当前版本的默认定位是：
+
+- **控制面优先**：brief / bible / characters / outline / state / hooks
+- **正文降级**：只有用户明确要求时，才输出样稿或完整草稿
+- **项目无关**：不内建任何特定外部项目的 feed 结构
+
 它采用：
 
 - 一书一目录
+- 控制面优先
 - 先立项再写
 - 强闭环维护
 - 按需联网考据
@@ -26,7 +33,8 @@
 
 - 初始化项目目录
 - 生成 brief / bible / characters / outline
-- 写草稿与正式稿
+- 生成 chapter context / 通用上下文包
+- 按需写样稿 / 草稿
 - 生成摘要 / 审查 / 诊断
 - 更新状态卡 / 伏笔池 / 时间线 / 资源账本
 
@@ -70,6 +78,16 @@ projects/{novel-slug}/
 └── 07_exports/
 ```
 
+## 外部项目协同
+
+如果用户已经有独立的正文项目 / 写作引擎，本 skill 默认：
+
+- 不直接生成正式章节 canon
+- 优先生成控制面、chapter context 与样稿参考
+- 只在用户明确要求 prose 时，输出样稿 / tone reference / 完整草稿
+
+如果需要把控制面喂给特定项目，请使用对应的 bridge skill，例如本仓库中的 `skills/novel-ainovel-bridge`。
+
 ## 推荐入口
 
 - `/novel init`
@@ -88,5 +106,5 @@ projects/{novel-slug}/
 
 ## 说明
 
-如果你在旧版本说明里看到 `python ...`、`.py`、`build_context.py` 之类内容，那是历史实现痕迹。  
-当前版本以 `SKILL.md` 为准，已不再把 Python 作为运行前提。
+如果你在旧版本说明里看到某个特定项目名（例如 AI-Novel）或专属 feed 结构，那属于已拆分出去的桥接职责。  
+当前版本以 `SKILL.md` 为准：**默认负责通用小说控制面，项目专属对接交给 bridge skill。**

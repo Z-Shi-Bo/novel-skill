@@ -1,0 +1,16 @@
+schema_version: "1"
+project_slug: "{{NOVEL_SLUG}}"
+title: "{{NOVEL_TITLE}}"
+style: "{{STYLE}}"
+source_mode: "skill_planned"
+current_chapter: "{{CURRENT_CHAPTER}}"
+target_word_range:
+  min: "{{TARGET_WORD_MIN}}"
+  max: "{{TARGET_WORD_MAX}}"
+canon_sources:
+  - "01_brief/project_brief.md"
+  - "02_bible/story_bible.md"
+  - "02_bible/character_cards.md"
+  - "03_outline/chapter_outlines/ch{{CURRENT_CHAPTER_PADDED}}.md"
+  - "05_state/current_state.md"
+  - "05_state/pending_hooks.md"

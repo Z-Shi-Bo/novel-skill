@@ -1,0 +1,18 @@
+{
+  "files": [
+    ".gitignore",
+    "README.md",
+    "SKILL.md",
+    "docs\\schema\\ainovel-feed.md",
+    "references\\workflow.md",
+    "templates\\ainovel_characters.json",
+    "templates\\ainovel_feed_manifest.yaml",
+    "templates\\ainovel_foreshadows.json",
+    "templates\\ainovel_outline.json",
+    "templates\\ainovel_premise.md",
+    "templates\\ainovel_world_rules.json",
+    "templates\\chapter_context.yaml",
+    "templates\\reviewer_override.md",
+    "templates\\writer_override.md"
+  ]
+}
