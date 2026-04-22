@@ -191,9 +191,37 @@ codex exec \
 3. `--ephemeral` 用于避免会话状态污染；持久记忆只看文件系统产物。
 4. 所有 stdout/stderr/last message 必须保留到报告目录。
 
+### 9.1 skill under test 绑定策略
+
+为了测试 **仓库中的 `skills/novel/`**，而不是用户当前已安装版本，Harness 必须为每次运行准备一个隔离的 `CODEX_HOME`：
+
+```text
+<temp-codex-home>/
+├── auth.json
+├── config.toml
+├── instruction.ctf.md
+└── skills/
+    └── novel/
+        ├── SKILL.md
+        ├── README.md
+        ├── index.json
+        ├── docs/
+        ├── references/
+        └── templates/
+```
+
+规则：
+
+1. 从用户当前 `CODEX_HOME` 复制认证信息。
+2. 基于用户当前 provider/model 生成一份**最小测试配置**，避免把无关 MCP / OMX 负担带进回归运行。
+3. 从仓库工作树复制 `skills/novel/` 到临时 `CODEX_HOME/skills/novel/`。
+4. `codex exec` 运行时显式注入临时 `CODEX_HOME`，确保测到的是待验证版本。
+5. 用例结束后保留必要工件，但不污染用户真实 skill 安装目录。
+
 已验证事实：
 - 本地存在 `codex exec` 非交互入口。
 - 本地可通过该入口识别 `$novel` skill。
+- 本地可通过临时 `CODEX_HOME` 加载自定义 skill，说明隔离 skill under test 可行。
 
 ## 10. Case Schema
 

@@ -1,0 +1,18 @@
+id: guardrail_block_write_without_outline
+suite: guardrail
+purpose: verify write refuses to create chapter files when the project has no chapter outline
+fixture: initialized-no-outline
+steps:
+  - name: reject_write_without_outline
+    timeout_sec: 240
+    prompt: |
+      $novel write 在项目 no-outline-book 中写第1章正式稿。
+      不要先补章纲，也不要创建新的 chapter outline；如果规则不允许，就直接说明原因并停止。
+    expect:
+      files_absent:
+        - projects/no-outline-book/04_manuscript/chapters/ch001.md
+        - projects/no-outline-book/04_manuscript/drafts/ch001_draft.md
+        - projects/no-outline-book/03_outline/chapter_outlines/ch001.md
+      last_message_any_contains:
+        - 章纲
+        - outline

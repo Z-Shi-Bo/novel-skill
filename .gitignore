@@ -1,4 +1,7 @@
 skills/*/.omc/
 skills/*/projects/
+.omc/
+.omx/
+tests/reports/runs/
 **/__pycache__/
 *.pyc
