@@ -20,6 +20,22 @@
 - 按需联网考据
 - 模板驱动落盘
 
+## 适合什么场景
+
+- 想从零开一本书，并长期维护
+- 想同时做设定、大纲、人物、正文、改稿
+- 想要一套可续写、可审查、可同步状态的创作控制面
+- 有时直接用 skill 写正文，不依赖外部写作项目
+
+## 不适合什么场景
+
+- 只想做世界观 / 人设 / 大纲，不要正文  
+  → 用 `novel-framework`
+- 已经明确是 AI-Novel 项目交接 / accepted 回流  
+  → 用 `novel-ainovel-bridge`
+- 只想随口试一小段，不维护项目文件  
+  → 讨论模式更合适
+
 ## 运行方式
 
 本 skill 现在是 **prompt-native / template-native**：
@@ -82,11 +98,32 @@ projects/{novel-slug}/
 └── 07_exports/
 ```
 
+## 你会得到什么
+
+- 一套标准化小说项目目录
+- 稳定的 brief / bible / characters / outline / manuscript / state / report 文件
+- 可直接续写、审稿、改稿、诊断的长期创作面板
+- 与 `novel-framework` / `novel-ainovel-bridge` 可组合协同的控制面
+
 ## 组合使用建议
 
 - 想用一个 skill 从框架一路写到内容：用 `novel`
 - 只想生成整体背景、大纲、人物角色、钩子、性格、故事情节框架：用 `novel-framework`
 - 想把控制面喂给 AI-Novel 或同步 AI-Novel accepted 结果：用 `novel-ainovel-bridge`
+
+## 最小使用流程
+
+```text
+/novel init
+→ /novel brief
+→ /novel bible
+→ /novel characters
+→ /novel outline
+→ /novel write
+→ /novel review
+```
+
+如果用户明确只要框架，不要继续写正文，就不要硬留在 `novel`，直接切到 `novel-framework`。
 
 ## 推荐入口
 

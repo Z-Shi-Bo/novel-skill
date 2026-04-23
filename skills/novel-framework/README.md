@@ -16,6 +16,12 @@
 - “只做人物、钩子、故事情节骨架”
 - “只导出 chapter context / framework bundle 给后续流程”
 
+## 不适合什么场景
+
+- 要样章、试写、续写、正文草稿
+- 要润色 / 改写 / 重写正文
+- 要 AI-Novel feed 导出或 accepted 回流
+
 ## 与 `novel` 的区别
 
 - `novel`：框架 + 内容双栈
@@ -46,6 +52,12 @@ npx skills add https://github.com/shibo1998/shibo-skills --skill novel-framework
 - `07_exports/framework_bundle.md`
 
 它们都属于控制面交付物，不包含正文。
+
+## 你会得到什么
+
+- 一套纯控制面的小说项目骨架
+- 稳定的人设 / 世界观 / 卷纲 / 章纲 / 状态 / 钩子资产
+- 可直接喂给 `novel` 或 `novel-ainovel-bridge` 的上游框架层
 
 ## 文件命名约定
 

@@ -35,6 +35,12 @@ npx skills add https://github.com/shibo1998/shibo-skills --skill novel-ainovel-b
 - “把 accepted 章节结果同步回控制面”
 - “桥接 novel skill 和 AI-Novel 项目”
 
+## 不适合什么场景
+
+- 从零开始发明世界观、人设、主线
+- 直接写正文、改正文、润色正文
+- 没有通用控制面项目就想硬导 feed
+
 ## 最小使用流程
 
 ### export
@@ -64,6 +70,17 @@ npx skills add https://github.com/shibo1998/shibo-skills --skill novel-ainovel-b
 - 一次把多个已 accepted 章节回流
 - 同章有 replay / retry，需要按 `payload_id` 去重
 - 想明确指定本次回流顺序
+
+## 你会得到什么
+
+- 一套稳定的 `ainovel_feed` 导出物
+- accepted payload / batch manifest 的回流合同
+- 通用控制面与 AI-Novel 之间清晰、可追踪、可重复执行的交接层
+
+## 推荐组合
+
+- `novel + novel-ainovel-bridge`：适合既要直接创作又要接 AI-Novel
+- `novel-framework + novel-ainovel-bridge`：适合“skill 只做框架，项目负责正文”
 
 桥接层不负责写正文，它只负责：
 - 把控制面转成 AI-Novel 可消费格式

@@ -8,6 +8,20 @@
 - `skills/novel-framework` — 通用长篇小说**纯框架** skill
 - `skills/novel-ainovel-bridge` — `novel` / `novel-framework` 到 AI-Novel 的项目适配层
 
+## 三个产品怎么选
+
+| 你现在要的 | 选哪个 | 你会得到什么 |
+|---|---|---|
+| 从立项一路写到正文 | `novel` | 框架 + 内容双栈，一书一目录长期创作工作台 |
+| 只做背景 / 人设 / 大纲 / 钩子 | `novel-framework` | 纯控制面，不出正文 |
+| 把控制面喂给 AI-Novel / 回流 accepted 结果 | `novel-ainovel-bridge` | feed 导出 + accepted sync |
+
+一句话判断：
+
+- **要创作** → `novel`
+- **只要框架** → `novel-framework`
+- **要接 AI-Novel** → `novel-ainovel-bridge`
+
 ## 安装
 
 本仓库按 **skills.sh / `npx skills add`** 的多 skill 仓库格式组织。
@@ -132,6 +146,16 @@ npx skills add shibo1998/shibo-skills --skill novel-ainovel-bridge
 - 有时直接用 skill 写内容
 - 有时把控制面喂给 AI-Novel
 - 想保留更高创作自由度
+
+## 成熟产品标准
+
+这三个 skill 后续只按下面标准维护，不再做无限优化：
+
+1. **能装**：`npx skills add ...` 正常
+2. **能懂**：定位、边界、最小流程明确
+3. **能用**：路径、文件命名、字段合同稳定
+4. **能稳**：核心本地回归可复跑
+5. **不脏**：仓库只分发 skill 资产，测试只留本地
 
 ## 本地验证声明
 
