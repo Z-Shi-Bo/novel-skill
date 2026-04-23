@@ -28,8 +28,13 @@
 ## 安装
 
 ```powershell
-$env:SKILL_BASE_URL='https://raw.githubusercontent.com/shibo1998/shibo-skills/main/'
-npx skill skills/novel-framework
+npx skills add shibo1998/shibo-skills --skill novel-framework
+```
+
+或：
+
+```powershell
+npx skills add https://github.com/shibo1998/shibo-skills --skill novel-framework
 ```
 
 ## 内容

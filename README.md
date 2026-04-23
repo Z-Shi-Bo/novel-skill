@@ -10,25 +10,39 @@
 
 ## 安装
 
-### 全功能小说 skill
+本仓库按 **skills.sh / `npx skills add`** 的多 skill 仓库格式组织。
+
+### 交互式安装（推荐）
 
 ```powershell
-$env:SKILL_BASE_URL='https://raw.githubusercontent.com/shibo1998/shibo-skills/main/'
-npx skill skills/novel
+npx skills add shibo1998/shibo-skills --list
+npx skills add shibo1998/shibo-skills
 ```
 
-### 纯框架 skill
+### 直接安装指定 skill
+
+#### 全功能小说 skill
 
 ```powershell
-$env:SKILL_BASE_URL='https://raw.githubusercontent.com/shibo1998/shibo-skills/main/'
-npx skill skills/novel-framework
+npx skills add shibo1998/shibo-skills --skill novel
 ```
 
-### AI-Novel bridge
+#### 纯框架 skill
 
 ```powershell
-$env:SKILL_BASE_URL='https://raw.githubusercontent.com/shibo1998/shibo-skills/main/'
-npx skill skills/novel-ainovel-bridge
+npx skills add shibo1998/shibo-skills --skill novel-framework
+```
+
+#### AI-Novel bridge
+
+```powershell
+npx skills add shibo1998/shibo-skills --skill novel-ainovel-bridge
+```
+
+### 也可用完整 GitHub URL
+
+```powershell
+npx skills add https://github.com/shibo1998/shibo-skills --skill novel
 ```
 
 ## 仓库结构

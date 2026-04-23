@@ -19,8 +19,13 @@
 ## 安装
 
 ```powershell
-$env:SKILL_BASE_URL='https://raw.githubusercontent.com/shibo1998/shibo-skills/main/'
-npx skill skills/novel-ainovel-bridge
+npx skills add shibo1998/shibo-skills --skill novel-ainovel-bridge
+```
+
+或：
+
+```powershell
+npx skills add https://github.com/shibo1998/shibo-skills --skill novel-ainovel-bridge
 ```
 
 ## 典型使用场景
