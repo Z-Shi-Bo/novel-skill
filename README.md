@@ -14,13 +14,17 @@
 |---|---|---|
 | 从立项一路写到正文 | `novel` | 框架 + 内容双栈，一书一目录长期创作工作台 |
 | 只做背景 / 人设 / 大纲 / 钩子 | `novel-framework` | 纯控制面，不出正文 |
-| 把控制面喂给 AI-Novel / 回流 accepted 结果 | `novel-ainovel-bridge` | feed 导出 + accepted sync |
+| 把已有控制面喂给 AI-Novel / 回流 accepted 结果 | `novel-ainovel-bridge` | feed 导出 + accepted sync，不负责从零起盘 |
 
 一句话判断：
 
 - **要创作** → `novel`
 - **只要框架** → `novel-framework`
 - **要接 AI-Novel** → `novel-ainovel-bridge`
+
+补一句边界：
+
+- `novel-ainovel-bridge` **不负责从零生成大纲**；如果你既要大纲又要 AI-Novel 参数，请先用 `novel-framework` 或 `novel`，再接 bridge
 
 ## 安装
 
@@ -93,7 +97,7 @@ skills/
 
 - `novel`：负责立项、设定、角色、纲要、状态、伏笔、样稿、正文、改写
 - `novel-framework`：负责小说整体背景、世界观、角色、钩子、故事骨架、状态与伏笔，不写正文
-- `novel-ainovel-bridge`：负责 AI-Novel 专属 feed 导出与 accepted 结果回流
+- `novel-ainovel-bridge`：负责 AI-Novel 专属 feed 导出与 accepted 结果回流，不负责从零生成大纲
 - 运行态目录如 `.omc/`、`projects/` 不进 git
 - `index.json` 只列实际分发文件
 
@@ -131,9 +135,14 @@ npx skills add shibo1998/shibo-skills --skill novel-ainovel-bridge
 推荐流程：
 
 1. 用 `novel-framework` 生成背景、角色、卷纲、章纲、状态卡
-2. 用 `novel-ainovel-bridge` 导出 `ainovel_feed`
+2. 用 `novel-ainovel-bridge` 把这些控制面导出为 `ainovel_feed`
 3. 在 AI-Novel 项目里跑正文 / 审稿 / 润色
 4. 用 `novel-ainovel-bridge` 同步 accepted 结果回控制面
+
+注意：
+
+- 如果主诉求是“先帮我做大纲”，先用 `novel-framework`
+- 如果主诉求是“把已有大纲和控制面转成 AI-Novel 能吃的参数”，再用 `novel-ainovel-bridge`
 
 ### 4. 全功能创作 + AI-Novel 联动
 
