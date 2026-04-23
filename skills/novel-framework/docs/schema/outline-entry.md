@@ -34,3 +34,4 @@
 - 章纲只有主题，没有事件
 - `Progress Beats` 全是同义改写
 - `Payoff` 留空，导致后续 export 无法组 contract
+- 把文件写成 `chNNN_outline.md`，导致后续装配链找不到标准章纲

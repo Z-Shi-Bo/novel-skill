@@ -47,6 +47,13 @@ npx skills add https://github.com/shibo1998/shibo-skills --skill novel-framework
 
 它们都属于控制面交付物，不包含正文。
 
+## 文件命名约定
+
+- 章纲：`03_outline/chapter_outlines/chNNN.md`
+- 章节上下文包：`07_exports/context_packs/chNNN_context.yaml`
+
+做 `outline` 时不要写成 `chNNN_outline.md`。
+
 ## 最小命令流
 
 ```text
@@ -59,6 +66,7 @@ npx skills add https://github.com/shibo1998/shibo-skills --skill novel-framework
 ```
 
 如果用户只说“先做卷纲 / 章纲”，就停在 `outline`，不要擅自补 prose。
+如果用户已经显式调用 `$novel-framework outline` 并给出章节目标，就直接写章纲，不要先做 brainstorming 式反问。
 
 ## 标准 schema
 

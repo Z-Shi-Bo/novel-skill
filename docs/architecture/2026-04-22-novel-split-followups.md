@@ -11,6 +11,8 @@
 - `novel` 的 smoke / guardrail 回归已通过
 - `novel-framework` 的 smoke init / block write 回归已通过
 - `novel-framework` 的 export context pack 已完成本地验证
+- `novel-framework` 的 outline-only 本地验证已通过
+- framework 已补章纲标准命名合同与 direct-exec 规则，避免落成 `chNNN_outline.md` 或被 brainstorming 拦截
 - `novel-ainovel-bridge` 的 export / missing-control-plane 回归已通过
 - `novel-ainovel-bridge` 的 sync accepted payload 已完成本地验证
 - bridge 的 `ainovel_feed` 文档已细化到字段级
@@ -26,9 +28,6 @@
 
 1. `framework smoke init`
 2. `framework` 遇到“写正文”请求时明确拒绝并提示用 `novel`
-
-仍建议补（本地验证即可，不必作为分发资产）：
-
 3. `framework outline only`
 
 ### P1：bridge 的 export / sync 本地回归
@@ -115,10 +114,9 @@
 
 推荐后续按这个顺序做：
 
-1. 补 `novel-framework` 的 outline only 测试
-2. 把 `bridge sync` 的本地验证固化成更稳定自动回归
-3. 给共享 schema 增加本地 contract 校验
-4. 再考虑命名微调
+1. 把 `bridge sync` 的本地验证固化成更稳定自动回归
+2. 给共享 schema 增加本地 contract 校验
+3. 再考虑命名微调
 
 ## 判断是否需要继续改
 

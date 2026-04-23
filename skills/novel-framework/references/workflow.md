@@ -34,6 +34,9 @@ init
 3. 未有章纲时，不生成 chapter context。
 4. 框架诊断不过时，不建议切换到正文创作。
 5. 用户只要求 `outline` 时，不自动补 prose / 样章 / tone reference。
+6. 章纲文件固定命名为 `03_outline/chapter_outlines/chNNN.md`，不加 `_outline` 后缀。
+7. `chapter_index.md` 的状态列使用稳定短值，不写 `done`、`outline-only` 这类漂移值。
+8. 显式 `outline` 命令属于执行态，不先转成 brainstorming 访谈。
 
 ## 切换规则
 

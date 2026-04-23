@@ -18,6 +18,8 @@
 ### 规则
 - `chapter_no` 应为章节号或 `chNNN` 对应值
 - `outline_status` / `draft_status` / `review_status` / `final_status` / `sync_status` 必须用稳定短值
+- `outline_status` 推荐值：`pending` / `outlined`
+- `draft_status` / `review_status` / `final_status` 推荐值：`not_started` / `pending` / `done`
 - `sync_status` 推荐值：`pending` / `synced`
 
 ---

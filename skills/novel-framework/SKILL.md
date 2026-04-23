@@ -1,7 +1,7 @@
 ---
 name: novel-framework
 description: "Use when the user wants only the control-plane of a novel project—background, worldbuilding, setting rules, characters, hooks, outlines, chapter contracts, current state, or pending hooks—and explicitly does not want prose output. Also use whenever the user explicitly invokes $novel-framework or /novel-framework. If the user asks for prose, drafts, rewrites, or narrative content, switch to novel."
-version: 1.1.0
+version: 1.3.0
 user-invocable: true
 argument-hint: "[init|brief|bible|characters|outline|state|diagnose|research|export|resume] [项目或需求]"
 ---
@@ -75,6 +75,12 @@ projects/{novel-slug}/
 ```
 
 即使是纯框架 skill，也沿用与 `novel` 相同的项目结构，方便后续无缝切换到全功能创作或 bridge 对接。
+
+默认文件命名：
+
+- 章纲：`03_outline/chapter_outlines/chNNN.md`
+- 摘要：`06_reports/chapter_summaries/chNNN_summary.md`
+- 通用上下文包：`07_exports/context_packs/chNNN_context.yaml`
 
 ## 支持的任务类型
 
@@ -169,7 +175,12 @@ projects/{novel-slug}/
 
 当用户只要卷纲 / 章纲 / chapter contract 时：
 
+- 显式 `$novel-framework outline` / `/novel-framework outline` 属于**直接执行命令**，不要跳去 generic brainstorming / planning
+- 用户已给出项目、章节目标、工作标题或核心功能时，直接落盘；不要先反问“你更想走哪种开篇功能”
+- 如果缺少细节，用最保守默认值补齐，再落标准文件；只有缺项目、缺章节目标这类阻断信息时才允许停下
 - 只更新 `03_outline/*` 与必要控制面引用
+- 章纲固定落到 `03_outline/chapter_outlines/chNNN.md`，不要写成 `chNNN_outline.md`
+- 如果更新 `chapter_index.md`，状态列优先使用稳定短值：`outline_status=outlined`、`draft_status=not_started`、`review_status=not_started`、`final_status=not_started`、`sync_status=pending`
 - 不补 prose、样章、tone reference
 - 不把 `outline` 偷偷扩成 `write`
 
