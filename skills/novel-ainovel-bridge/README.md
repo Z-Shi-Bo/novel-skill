@@ -35,6 +35,22 @@ npx skills add https://github.com/shibo1998/shibo-skills --skill novel-ainovel-b
 - “把 accepted 章节结果同步回控制面”
 - “桥接 novel skill 和 AI-Novel 项目”
 
+## 最小使用流程
+
+### export
+
+1. 先用 `novel` 或 `novel-framework` 产出控制面
+2. 再执行 bridge 导出 feed
+
+### sync
+
+1. 确认 AI-Novel 侧已经得到 accepted / final 结果
+2. 再执行 bridge 回流控制面
+
+桥接层不负责写正文，它只负责：
+- 把控制面转成 AI-Novel 可消费格式
+- 把 AI-Novel accepted 结果回流到控制面
+
 ## 主要产物
 
 ```text

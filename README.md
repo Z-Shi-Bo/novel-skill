@@ -83,6 +83,56 @@ skills/
 - 运行态目录如 `.omc/`、`projects/` 不进 git
 - `index.json` 只列实际分发文件
 
+## 推荐使用姿势
+
+### 1. 只做框架
+
+```powershell
+npx skills add shibo1998/shibo-skills --skill novel-framework
+```
+
+适合：
+- 只要背景 / 世界观 / 人设 / 纲要
+- 不要正文
+- 想先把控制面搭稳
+
+### 2. 直接做小说（框架 + 内容）
+
+```powershell
+npx skills add shibo1998/shibo-skills --skill novel
+```
+
+适合：
+- 想从立项一路写到章节内容
+- 需要样章、草稿、改写、续写
+- 不依赖外部正文项目
+
+### 3. 框架 + AI-Novel 联动
+
+```powershell
+npx skills add shibo1998/shibo-skills --skill novel-framework
+npx skills add shibo1998/shibo-skills --skill novel-ainovel-bridge
+```
+
+推荐流程：
+
+1. 用 `novel-framework` 生成背景、角色、卷纲、章纲、状态卡
+2. 用 `novel-ainovel-bridge` 导出 `ainovel_feed`
+3. 在 AI-Novel 项目里跑正文 / 审稿 / 润色
+4. 用 `novel-ainovel-bridge` 同步 accepted 结果回控制面
+
+### 4. 全功能创作 + AI-Novel 联动
+
+```powershell
+npx skills add shibo1998/shibo-skills --skill novel
+npx skills add shibo1998/shibo-skills --skill novel-ainovel-bridge
+```
+
+适合：
+- 有时直接用 skill 写内容
+- 有时把控制面喂给 AI-Novel
+- 想保留更高创作自由度
+
 ## 本地验证声明
 
 这个仓库的定位是：**仓库里只放可安装、可分发、可直接使用的 skill 资产**。
