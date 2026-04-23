@@ -37,6 +37,69 @@
 | `overrides/writer.override.md` | 写作加严规则 | 项目级文风、禁用词、节奏要求 |
 | `overrides/reviewer.override.md` | 审稿加严规则 | 外部项目 review 时的额外门槛 |
 
+## `manifest.yaml` 必填字段
+
+| 字段 | 类型 | 含义 |
+|---|---|---|
+| `schema_version` | string | 当前 feed schema 版本 |
+| `project_slug` | string | 项目标识 |
+| `title` | string | 小说标题 |
+| `style` | string | 文风 / 基调 |
+| `source_mode` | string | 固定为 `skill_planned` |
+| `current_chapter` | string/int | 当前要喂给项目的章节号 |
+| `target_word_range.min` | string/int | 目标字数下限 |
+| `target_word_range.max` | string/int | 目标字数上限 |
+| `canon_sources` | array[string] | 当前控制面事实来源 |
+
+## `characters.json` 推荐字段
+
+每个角色对象至少包含：
+
+- `name`
+- `aliases`
+- `role`
+- `description`
+- `arc`
+- `traits`
+- `tier`
+
+## `world_rules.json` 推荐字段
+
+每条规则至少包含：
+
+- `category`
+- `rule`
+- `boundary`
+
+## `outline.json` 推荐字段
+
+最小层级：
+
+- volume
+  - `index`
+  - `title`
+  - `theme`
+- arc
+  - `index`
+  - `title`
+  - `goal`
+- chapter
+  - `chapter`
+  - `title`
+  - `coreEvent`
+  - `hook`
+  - `scenes`
+
+## `foreshadows.json` 推荐字段
+
+每条伏笔至少包含：
+
+- `description`
+- `plantedChapter`
+- `status`
+- `hints`
+
+
 ## 章节意图包最小字段
 
 `chapter_context/chNNN.yaml` 至少应包含：
@@ -56,6 +119,22 @@
 - `forbidden_moves`
 - `active_hooks`
 - `state_focus`
+
+## sync 回流字段建议
+
+当 AI-Novel 产出 accepted / final 结果时，优先回流：
+
+- `summary` → `06_reports/chapter_summaries/`
+- `pending hooks` 变化 → `05_state/pending_hooks.md`
+- `current state` 变化 → `05_state/current_state.md`
+- `timeline events` → `05_state/timeline.md` 或等价文件
+- `relationship changes` → `02_bible/relationship_matrix.md` 或后续关系账本
+
+不要回流：
+
+- draft 正文
+- polish 中间态
+- 未 accepted 的 review 结果
 
 ## 同步原则
 

@@ -8,28 +8,42 @@
 - `novel-framework` 新建为纯框架 skill
 - `novel-ainovel-bridge` 保持为 AI-Novel 专属桥接层
 - 根 README 与各 skill README 已更新
-- smoke / guardrail 回归已通过（针对 `novel`）
+- `novel` 的 smoke / guardrail 回归已通过
+- `novel-framework` 的 smoke init / block write 回归已通过
+- `novel-ainovel-bridge` 的 export / missing-control-plane 回归已通过
+- bridge 的 `ainovel_feed` 文档已细化到字段级
 
 ## 后续建议修改
 
-### P1：为 `novel-framework` 补最小回归测试
+### P1：继续补 `novel-framework` 回归
 
-建议新增：
+当前已完成：
 
 1. `framework smoke init`
-2. `framework outline only`
-3. `framework` 遇到“写正文”请求时应明确拒绝并提示用 `novel`
+2. `framework` 遇到“写正文”请求时明确拒绝并提示用 `novel`
+
+仍建议补：
+
+3. `framework outline only`
+4. `framework export context pack`
 
 ### P1：bridge 的 export / sync 细化
 
-1. 明确 AI-Novel 当前真实消费字段与文件名
-2. 把 `ainovel_feed` 模板从占位模板升级成“字段级规范”
-3. 明确 `sync` 时哪些 accepted 结果可回流：
+当前已完成：
+
+1. `bridge export` 成功导出 feed
+2. `bridge export` 在控制面缺口时正确拒绝
+3. `ainovel_feed` 文档已细化为字段级规范
+
+仍建议补：
+
+4. 明确 `sync` 时哪些 accepted 结果可回流：
    - summary
    - pending hooks
    - current state
    - timeline
    - relationship changes
+5. 补 `bridge sync` 的自动回归
 
 ### P1：统一三层之间的 schema
 
@@ -65,10 +79,14 @@
 
 ### P2：桥接层测试 fixture
 
-建议新增：
+当前已完成：
 
-- 一个完整 `novel` 控制面 fixture
-- 一个完整 `novel-framework` 控制面 fixture
+- 一个完整 `control-plane-ready` fixture
+- 一个 `control-plane-missing-state` fixture
+
+仍建议补：
+
+- 一个完整 `novel-framework` 专属 fixture
 - 一个 AI-Novel accepted fixture
 - 一个 AI-Novel draft-only fixture
 
@@ -89,9 +107,9 @@
 
 推荐后续按这个顺序做：
 
-1. 补 `novel-framework` 测试
-2. 细化 bridge 字段规范
-3. 实现 accepted 回流规则
+1. 补 `novel-framework` 的 outline/context 导出测试
+2. 实现并测试 `bridge sync`
+3. 统一三层 schema
 4. 补 README 组合示例
 5. 再考虑命名微调
 
@@ -111,6 +129,6 @@
 
 那优先做：
 
-- framework 测试
-- bridge 测试
-- 字段级规范
+- framework 额外测试
+- bridge sync 测试
+- 字段级 schema 统一

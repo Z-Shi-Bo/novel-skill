@@ -101,10 +101,46 @@ projects/{novel-slug}/
 
 则必须：
 
-- 立即创建项目目录与基础文件
+- 立即在 **`projects/{slug}/`** 下创建项目目录与基础文件
 - 不追问题材细节
 - 不自动继续 `brief`、`bible`、`outline`
+- **只写约定内的骨架文件，不自创额外文件名**
 
+`init` 时至少应在 **`projects/{slug}/`** 下创建并优先使用这些固定文件名：
+
+- `project_manifest.yaml`
+- `01_brief/project_brief.md`
+- `02_bible/story_bible.md`
+- `02_bible/character_cards.md`
+- `02_bible/relationship_matrix.md`
+- `03_outline/chapter_index.md`
+- `05_state/current_state.md`
+- `05_state/pending_hooks.md`
+
+`project_manifest.yaml` 必须满足与 `novel` 相同的 manifest 合同字段：
+
+- `title`
+- `slug`
+- `genre`
+- `style`
+- `audience`
+- `language`
+- `research_mode`
+- `strong_sync`
+- `current_phase`
+- `current_volume`
+- `current_chapter`
+- `last_updated`
+
+字段要求：
+
+- `research_mode` 只能是 `off` / `on-demand` / `strict`，默认 `on-demand`
+- `strong_sync` 用字符串 `true`
+- `current_phase` 默认 `initialized`
+- `current_volume` / `current_chapter` 默认 `0`
+- `last_updated` 用当天日期 `YYYY-MM-DD`
+
+不要写成嵌套结构（如 `project: { ... }`），不要自创 manifest schema。
 ## 命令面
 
 显式命令优先：
