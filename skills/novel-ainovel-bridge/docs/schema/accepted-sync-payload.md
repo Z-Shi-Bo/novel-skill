@@ -47,3 +47,4 @@
 1. 默认一章一份 payload 文件。
 2. 一次处理多章时，按 `chapter` 升序应用。
 3. 任一 payload 不是 accepted / final 时，应先报冲突，不要静默混入 canon。
+4. 如果需要显式列出多章同步范围，优先使用 `docs/schema/accepted-sync-batch.md` 对应的 batch manifest。

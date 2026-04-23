@@ -155,6 +155,8 @@
 - `source_paths`
 - `accepted_at`
 
+如果需要显式指定多章同步范围与顺序，使用 `docs/schema/accepted-sync-batch.md` 对应的 batch manifest。
+
 ## sync 回流字段建议
 
 当 AI-Novel 产出 accepted / final 结果时，优先回流：
@@ -179,3 +181,4 @@
 3. 样稿 / 试写 / tone reference 不能直接回流为正文 canon。
 4. handoff 包优先增量更新，不整包重写。
 5. 多章节 sync 默认按章节号升序处理。
+6. 如果用户提供 batch manifest，则先按 manifest 解析，再按章节号规范化排序。

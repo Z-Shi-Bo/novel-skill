@@ -1,7 +1,7 @@
 ---
 name: novel-ainovel-bridge
 description: "Use when the user wants to export a generic novel project into AI-Novel feed files or sync AI-Novel accepted chapter results back into the generic control-plane. Trigger on AI-Novel / ainovel, 导出给 AI-Novel, 喂给项目, ainovel_feed, accepted 回流, or explicit $novel-ainovel-bridge / /novel-ainovel-bridge."
-version: 1.1.0
+version: 1.2.0
 user-invocable: true
 argument-hint: "[export|sync|resume] [项目或路径]"
 ---
@@ -84,6 +84,12 @@ argument-hint: "[export|sync|resume] [项目或路径]"
 
 恢复上次 bridge 现场，继续 export 或 sync。
 
+`sync` 默认既支持：
+
+- 单文件 accepted payload
+- accepted payload 目录
+- 明确列出多章条目的 batch manifest
+
 ## 工作流程
 
 ### export
@@ -128,6 +134,12 @@ argument-hint: "[export|sync|resume] [项目或路径]"
 - `accepted_at`
 
 如果只有 draft / polish 中间态，而没有 accepted / final 结果，必须拒绝回流。
+
+如果用户给的是目录或 batch manifest：
+
+- 先解析出候选 payload 列表
+- 再按 `chapter` 升序执行
+- 同一同步单元按 `payload_id` 或回退键去重
 
 ## sync 幂等规则
 
@@ -187,5 +199,6 @@ argument-hint: "[export|sync|resume] [项目或路径]"
 ## 参考资源
 
 - feed 结构：`docs/schema/ainovel-feed.md`
+- batch sync：`docs/schema/accepted-sync-batch.md`
 - bridge 工作流：`references/workflow.md`
 - feed 模板：`templates/*`

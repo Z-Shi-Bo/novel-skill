@@ -1,0 +1,14 @@
+mode: accepted_batch
+items:
+  - chapter: {{CHAPTER_NO_1}}
+    payload: "07_exports/ainovel_results/accepted/ch{{CHAPTER_PADDED_1}}_sync.yaml"
+    payload_id: "{{PAYLOAD_ID_1}}"
+    chapter_revision: "{{CHAPTER_REVISION_1}}"
+    accepted_at: "{{ACCEPTED_AT_1}}"
+    note: "{{NOTE_1}}"
+  - chapter: {{CHAPTER_NO_2}}
+    payload: "07_exports/ainovel_results/accepted/ch{{CHAPTER_PADDED_2}}_sync.yaml"
+    payload_id: "{{PAYLOAD_ID_2}}"
+    chapter_revision: "{{CHAPTER_REVISION_2}}"
+    accepted_at: "{{ACCEPTED_AT_2}}"
+    note: "{{NOTE_2}}"

@@ -52,6 +52,19 @@ npx skills add https://github.com/shibo1998/shibo-skills --skill novel-ainovel-b
 如果一次同步多章，默认按章节号升序处理。
 章节摘要目标文件统一使用 `06_reports/chapter_summaries/chNNN_summary.md`。
 
+### batch sync
+
+`sync` 除了吃单个 accepted payload，也可以直接吃：
+
+- 一个 accepted payload 目录
+- 一个 batch manifest
+
+适合场景：
+
+- 一次把多个已 accepted 章节回流
+- 同章有 replay / retry，需要按 `payload_id` 去重
+- 想明确指定本次回流顺序
+
 桥接层不负责写正文，它只负责：
 - 把控制面转成 AI-Novel 可消费格式
 - 把 AI-Novel accepted 结果回流到控制面
@@ -79,6 +92,7 @@ npx skills add https://github.com/shibo1998/shibo-skills --skill novel-ainovel-b
 - `SKILL.md`：bridge 行为规则
 - `docs/schema/ainovel-feed.md`：feed 结构说明
 - `docs/schema/accepted-sync-payload.md`：accepted 回流合同
+- `docs/schema/accepted-sync-batch.md`：多章节 / 批量回流合同
 - `docs/schema/chapter-context.md` / `character-card.md` / `outline-entry.md`：归一化字段说明
 - `references/workflow.md`：export / sync 流程
 - `templates/*`：feed 模板

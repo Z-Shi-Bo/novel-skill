@@ -16,6 +16,7 @@
 - bridge 的 `ainovel_feed` 文档已细化到字段级
 - `novel` / `novel-framework` / `novel-ainovel-bridge` 已补齐统一 schema：`chapter-context` / `character-card` / `outline-entry`
 - bridge 的 `sync` 合同已补充幂等与多章节顺序约定
+- bridge 已补 batch sync schema 与模板资产
 
 ## 后续建议修改
 
@@ -50,6 +51,7 @@
 
 4. 把 `bridge sync` 的本地验证进一步固化成稳定自动回归
 5. 增加多章节 / 多次 sync 的幂等性验证
+6. 验证 batch manifest 路径与 accepted 目录路径都能稳定工作
 
 ### P2：继续固化共享 schema 的本地校验
 
