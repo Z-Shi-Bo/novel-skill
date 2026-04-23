@@ -8,8 +8,7 @@ init
 → bible
 → characters
 → outline
-→ chapter context
-→ write / sample prose
+→ write
 → review
 → finalize
 → sync
@@ -26,8 +25,7 @@ init
 | bible | 固定世界规则与叙事口径 | `02_bible/story_bible.md` |
 | characters | 固化人物与关系 | `02_bible/character_cards.md`, `02_bible/relationship_matrix.md` |
 | outline | 先卷纲后章纲 | `03_outline/*` |
-| chapter context | 生成本章意图包 / 契约 / 语气约束 | `07_exports/context_packs/` |
-| write | 生成章节草稿或样稿 | `04_manuscript/drafts/` |
+| write | 生成章节草稿 | `04_manuscript/drafts/` |
 | review | 做四层审查 | `06_reports/reviews/` |
 | finalize | 写正式稿 | `04_manuscript/chapters/` |
 | sync | 完成摘要与状态更新 | `05_state/*`, `06_reports/chapter_summaries/` |
@@ -36,28 +34,16 @@ init
 ## 默认规则
 
 1. 未初始化项目时，不直接写正文。
-2. `init` 是脚手架动作：只建壳子，不做创意访谈，不自动进入后续阶段。
-3. 未有章纲时，不默认写正式章节。
-4. 如果用户已有外部写作项目，默认先输出控制面与样稿参考，不直接写正式章节。
-5. 写完草稿后，先 review，再定稿。
-6. 定稿后必须执行 sync。
-7. 章节未 `synced` 时，不视为完成。
+2. 未有章纲时，不默认写正式章节。
+3. 写完草稿后，先 review，再定稿。
+4. 定稿后必须执行 sync。
+5. 章节未 `synced` 时，不视为完成。
 
-## 双模式
+## 外部项目说明
 
-### 1. standalone 模式
-
-- 本 skill 直接写草稿 / 正式稿
-- 适合没有外部正文引擎的项目
-
-### 2. external-engine 模式
-
-- 本 skill 负责控制面、chapter context、样稿参考
-- 外部项目负责正文、细节、审稿、润色
-- accepted 结果再回流到本项目状态卡
-- 项目专属 packaging 由对应 bridge skill 负责
-
-只要用户明确提到外部项目 / engine / pipeline，默认进入 external-engine 模式。
+- `novel` 可以独立完成小说框架与正文创作。
+- 如果用户有外部正文项目，也可以继续使用 `novel` 创作内容。
+- 但任何**项目专属 feed / schema / import mapping** 不属于这里，交给 bridge skill。
 
 ## 讨论模式
 

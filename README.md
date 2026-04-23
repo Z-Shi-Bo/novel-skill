@@ -4,16 +4,24 @@
 
 ## 当前 skills
 
-- `skills/novel` — 通用长篇小说控制面 skill
-- `skills/novel-ainovel-bridge` — `novel` 到 AI-Novel 的项目适配层
+- `skills/novel` — 通用长篇小说**全功能** skill（框架 + 内容）
+- `skills/novel-framework` — 通用长篇小说**纯框架** skill
+- `skills/novel-ainovel-bridge` — `novel` / `novel-framework` 到 AI-Novel 的项目适配层
 
 ## 安装
 
-### 通用小说 skill
+### 全功能小说 skill
 
 ```powershell
 $env:SKILL_BASE_URL='https://raw.githubusercontent.com/shibo1998/shibo-skills/main/'
 npx skill skills/novel
+```
+
+### 纯框架 skill
+
+```powershell
+$env:SKILL_BASE_URL='https://raw.githubusercontent.com/shibo1998/shibo-skills/main/'
+npx skill skills/novel-framework
 ```
 
 ### AI-Novel bridge
@@ -35,6 +43,14 @@ skills/
 │   ├── docs/
 │   ├── references/
 │   └── templates/
+├── novel-framework/
+│   ├── .gitignore
+│   ├── SKILL.md
+│   ├── README.md
+│   ├── index.json
+│   ├── docs/
+│   ├── references/
+│   └── templates/
 └── novel-ainovel-bridge/
     ├── .gitignore
     ├── SKILL.md
@@ -47,7 +63,8 @@ skills/
 
 ## 分层约定
 
-- `novel`：负责立项、设定、角色、纲要、状态、伏笔、样稿参考
+- `novel`：负责立项、设定、角色、纲要、状态、伏笔、样稿、正文、改写
+- `novel-framework`：负责小说整体背景、世界观、角色、钩子、故事骨架、状态与伏笔，不写正文
 - `novel-ainovel-bridge`：负责 AI-Novel 专属 feed 导出与 accepted 结果回流
 - 运行态目录如 `.omc/`、`projects/` 不进 git
 - `index.json` 只列实际分发文件

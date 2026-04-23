@@ -14,7 +14,7 @@ argument-hint: "[export|sync|resume] [项目或路径]"
 
 它的职责只有两类：
 
-1. 把通用 `novel` skill 产出的控制面导出成 **AI-Novel** 可消费的 feed 包
+1. 把通用 `novel` 或 `novel-framework` skill 产出的控制面导出成 **AI-Novel** 可消费的 feed 包
 2. 把 **AI-Novel** 已 accepted 的章节结果回流到通用小说项目的控制面文件
 
 它默认不负责：
@@ -34,7 +34,7 @@ argument-hint: "[export|sync|resume] [项目或路径]"
 - “把 AI-Novel 的 accepted 结果同步回控制面”
 - “桥接 novel skill 和 AI-Novel”
 
-如果用户只是要做小说设定、大纲、状态维护，而没有项目适配诉求，应该使用通用 `novel` skill，而不是本 skill。
+如果用户只是要做小说设定、大纲、状态维护，而没有项目适配诉求，应该使用 `novel` 或 `novel-framework`，而不是本 skill。
 
 ## 输入前提
 

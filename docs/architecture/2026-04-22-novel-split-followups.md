@@ -1,16 +1,24 @@
-# novel skill 拆分后续修改清单
+# novel skill 三层拆分后续修改清单
 
 日期：2026-04-22
 
 ## 当前已完成
 
-- `novel` 回收为通用控制面 skill
-- `novel-ainovel-bridge` 新建为 AI-Novel 专属桥接层
+- `novel` 恢复为通用全功能小说 skill
+- `novel-framework` 新建为纯框架 skill
+- `novel-ainovel-bridge` 保持为 AI-Novel 专属桥接层
 - 根 README 与各 skill README 已更新
-- 分发索引已拆分
-- smoke / guardrail 回归已通过
+- smoke / guardrail 回归已通过（针对 `novel`）
 
 ## 后续建议修改
+
+### P1：为 `novel-framework` 补最小回归测试
+
+建议新增：
+
+1. `framework smoke init`
+2. `framework outline only`
+3. `framework` 遇到“写正文”请求时应明确拒绝并提示用 `novel`
 
 ### P1：bridge 的 export / sync 细化
 
@@ -23,99 +31,86 @@
    - timeline
    - relationship changes
 
-### P1：通用 `export` 与 bridge `export` 的边界再收紧
+### P1：统一三层之间的 schema
 
-1. `novel export` 目前仍是通用导出语义，建议后续限定为：
-   - 通用上下文包
-   - chapter context
-   - summary bundle
-2. AI-Novel feed 一律交给 `novel-ainovel-bridge export`
+重点统一：
 
-### P1：补 bridge 的回归测试
+- chapter context
+- current state
+- pending hooks
+- outline entry
+- character card
 
-当前 harness 覆盖的是 `novel` 的：
+避免 `novel` / `novel-framework` / `bridge` 三边未来漂移。
 
-- smoke init
-- guardrail: 无章纲禁止写正文
+### P2：README 增加组合用法示例
 
-建议补：
+建议补一个最小示例：
 
-1. `bridge export` 成功导出 feed
-2. `bridge export` 在缺少控制面文件时正确报错
-3. `bridge sync` 仅 accepted 结果可回流
-4. `bridge sync` 遇到 draft 时拒绝回流
-
-### P2：补 bridge 的 fixture
-
-建议新增：
-
-- 一个完整 `novel` 控制面 fixture
-- 一个 AI-Novel accepted fixture
-- 一个 AI-Novel draft-only fixture
-
-### P2：统一 chapter context 语义
-
-目前 `chapter_context.yaml` 已存在于通用层与 bridge 层。
-后续建议统一字段定义，避免两边未来漂移。
-
-可固定为：
-
-- chapter
-- title
-- must_keep
-- must_avoid
-- emotion_target
-- hook_goal
-- continuity_notes
-- voice_notes
-- required_beats
-- forbidden_moves
-
-### P2：补安装说明与组合用法示例
-
-建议在 README 里新增一个最小示例：
-
-1. `$novel init`
-2. `$novel brief`
-3. `$novel bible`
-4. `$novel outline`
+1. `$novel-framework init`
+2. `$novel-framework brief`
+3. `$novel-framework bible`
+4. `$novel-framework outline`
 5. `$novel-ainovel-bridge export`
 6. AI-Novel 跑正文
 7. `$novel-ainovel-bridge sync`
 
+再补一个全功能示例：
+
+1. `$novel init`
+2. `$novel brief`
+3. `$novel outline`
+4. `$novel write`
+5. `$novel review`
+
+### P2：桥接层测试 fixture
+
+建议新增：
+
+- 一个完整 `novel` 控制面 fixture
+- 一个完整 `novel-framework` 控制面 fixture
+- 一个 AI-Novel accepted fixture
+- 一个 AI-Novel draft-only fixture
+
 ### P3：命名再评估
 
-当前桥接 skill 名称：`novel-ainovel-bridge`
+当前名称：
 
-可选备选名：
+- `novel`
+- `novel-framework`
+- `novel-ainovel-bridge`
 
-- `ainovel-bridge`
-- `novel-bridge-ainovel`
-- `novel-ainovel-handoff`
+可选再评估：
 
-如果后续会出现多个 bridge，当前命名已经够清楚；如果不会，名字还可以再缩短。
+- `novel-framework` 是否要叫 `novel-planner`
+- `novel-ainovel-bridge` 是否要缩短成 `ainovel-bridge`
 
 ## 建议顺序
 
-推荐你后续按这个顺序做：
+推荐后续按这个顺序做：
 
-1. 补 bridge 测试
-2. 细化 feed 字段规范
+1. 补 `novel-framework` 测试
+2. 细化 bridge 字段规范
 3. 实现 accepted 回流规则
-4. 补 README 组合用法示例
+4. 补 README 组合示例
 5. 再考虑命名微调
 
 ## 判断是否需要继续改
 
 如果当前目标只是：
 
-- 保住 `novel` 通用性
-- 把 AI-Novel 耦合剥出去
+- `novel` 保持全功能
+- 同时提供一个纯框架入口
+- 把 AI-Novel 耦合固定在 bridge
 
 那现在已经够用。
 
 如果目标是：
 
-- 真正长期把 skill 和 AI-Novel 联机跑起来
+- 长期稳定联动 `novel-framework` + AI-Novel
 
-那优先做 **bridge 测试 + 字段规范 + sync 规则**。
+那优先做：
+
+- framework 测试
+- bridge 测试
+- 字段级规范

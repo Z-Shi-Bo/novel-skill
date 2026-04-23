@@ -1,21 +1,20 @@
 # novel
 
-长篇小说控制面型 skill。
+长篇小说**全功能** skill。
 
 ## 定位
 
 这不是“一次性写一章”的 prompt，而是一个**文件化、可续写、可审查、可维护**的小说工作台。
 
-当前版本的默认定位是：
+当前版本的定位是：
 
-- **控制面优先**：brief / bible / characters / outline / state / hooks
-- **正文降级**：只有用户明确要求时，才输出样稿或完整草稿
+- **框架 + 内容双栈**：既能做背景、设定、人物、纲要，也能写样章、草稿、正文
 - **项目无关**：不内建任何特定外部项目的 feed 结构
+- **桥接分离**：对接 AI-Novel 之类项目时，交给 bridge skill
 
 它采用：
 
 - 一书一目录
-- 控制面优先
 - 先立项再写
 - 强闭环维护
 - 按需联网考据
@@ -33,10 +32,10 @@
 
 - 初始化项目目录
 - 生成 brief / bible / characters / outline
-- 生成 chapter context / 通用上下文包
-- 按需写样稿 / 草稿
+- 写草稿与正式稿
 - 生成摘要 / 审查 / 诊断
 - 更新状态卡 / 伏笔池 / 时间线 / 资源账本
+- 按需导出通用上下文包
 
 ## 安装
 
@@ -78,15 +77,11 @@ projects/{novel-slug}/
 └── 07_exports/
 ```
 
-## 外部项目协同
+## 组合使用建议
 
-如果用户已经有独立的正文项目 / 写作引擎，本 skill 默认：
-
-- 不直接生成正式章节 canon
-- 优先生成控制面、chapter context 与样稿参考
-- 只在用户明确要求 prose 时，输出样稿 / tone reference / 完整草稿
-
-如果需要把控制面喂给特定项目，请使用对应的 bridge skill，例如本仓库中的 `skills/novel-ainovel-bridge`。
+- 想用一个 skill 从框架一路写到内容：用 `novel`
+- 只想生成整体背景、大纲、人物角色、钩子、性格、故事情节框架：用 `novel-framework`
+- 想把控制面喂给 AI-Novel 或同步 AI-Novel accepted 结果：用 `novel-ainovel-bridge`
 
 ## 推荐入口
 
@@ -106,5 +101,5 @@ projects/{novel-slug}/
 
 ## 说明
 
-如果你在旧版本说明里看到某个特定项目名（例如 AI-Novel）或专属 feed 结构，那属于已拆分出去的桥接职责。  
-当前版本以 `SKILL.md` 为准：**默认负责通用小说控制面，项目专属对接交给 bridge skill。**
+如果你只想要框架而不想输出任何正文，不要强行阉割 `novel`；直接使用独立的 `novel-framework`。  
+如果你看到某个特定项目名（例如 AI-Novel）或专属 feed 结构，那属于桥接职责，交给 `novel-ainovel-bridge`。

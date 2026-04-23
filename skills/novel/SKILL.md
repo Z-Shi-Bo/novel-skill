@@ -1,7 +1,7 @@
 ---
 name: novel
-description: "Create, plan, maintain, review, and resume long-form fiction projects with a file-based one-book-one-folder workflow. This skill is the direct workflow owner for explicit $novel or /novel commands: ALWAYS use it first for commands such as $novel init, $novel brief, $novel outline, and do NOT route those command-style requests to generic brainstorming or planning skills. It is primarily a novel control-plane planner: use it whenever the user wants to start a novel, define premise/world/characters, build volume or chapter outlines, maintain current story state and hooks, diagnose continuity, or keep a fiction project coherent across sessions. Treat $novel init as deterministic scaffolding rather than ideation. If the user already has a separate app / pipeline / engine that writes final chapter prose, default to control-plane outputs and sample prose instead of generating final canon chapters. Only write explicit full drafts when the user clearly asks for prose output. Also use it for reality-grounded fiction that needs on-demand research and fact verification. Trigger aggressively for requests like 开一本新书、做世界观/角色/卷纲/章纲、同步状态、整理伏笔、审稿、恢复上次创作现场."
-version: 3.2.0
+description: "Create, plan, write, review, maintain, and resume long-form fiction projects with a file-based one-book-one-folder workflow. This is the full-suite novel skill: use it whenever the user wants to start a novel, build story bible and outlines, write or revise chapters, maintain current story state, track hooks and continuity, diagnose long-form consistency, or resume a fiction project across sessions. ALWAYS treat explicit $novel or /novel commands as direct entrypoints to this skill instead of generic brainstorming or planning skills. Also use it for reality-grounded fiction that needs on-demand research and fact verification. If the user needs to export a project into AI-Novel specific feed files or sync AI-Novel accepted results back, use the separate novel-ainovel-bridge skill for that project-specific adaptation layer."
+version: 3.3.0
 user-invocable: true
 argument-hint: "[init|brief|bible|characters|outline|write|revise|review|state|diagnose|research|export|resume] [项目或需求]"
 ---
@@ -10,12 +10,11 @@ argument-hint: "[init|brief|bible|characters|outline|write|revise|review|state|d
 
 以简体中文工作。代码、命令、路径、文件名保持原文。
 
-这是一个面向长篇小说项目的完整工作台型 skill，不是一次性写文 prompt。  
+这是一个面向长篇小说项目的**全功能** skill，不是一次性写文 prompt。  
 显式 `$novel ...` / `/novel ...` 命令属于**直接入口**，应优先使用本 skill，而不是先跳去 generic brainstorming / planning skill。  
 它默认采用：
 
 - 一书一目录
-- 控制面优先
 - 先立项再写
 - 强闭环维护
 - 按需联网考据
@@ -29,35 +28,15 @@ argument-hint: "[init|brief|bible|characters|outline|write|revise|review|state|d
 - 新建小说项目
 - 明确题材、卖点、目标读者、风格和禁忌
 - 建立故事圣经、角色卡、关系表、卷纲、章纲
-- 写章节样稿、续写方案、补写方案、扩写方案、改写方案、重写方案
+- 写章节草稿、续写、补写、扩写、改写、重写
 - 检查 OOC、设定冲突、时间线问题、节奏问题、AI 味
 - 更新当前状态卡、伏笔池、章节摘要、时间线、资源账本
 - 恢复上次创作现场并继续推进
 - 为现实题材或现实细节做联网核验
 
-如果用户明确提到自己已有外部正文项目 / 写作引擎，本 skill 默认只负责控制面与样稿参考；项目适配与喂料由对应 bridge skill 负责。
+如果用户**只**想生成小说整体背景、大纲、人物角色、钩子、性格、故事情节等框架，而不想让 skill 写正文，优先使用独立的 `novel-framework` skill。
 
-## 默认职责边界
-
-本 skill 默认承担的是**小说控制面**，不是项目专属桥接层，也不是外部正文流水线本身。
-
-默认负责：
-
-- 立项、定盘、卖点、题材、读者定位
-- 世界观、设定铁律、角色卡、关系表
-- 卷纲 / 弧纲 / 章纲
-- 当前状态卡、伏笔池、时间线、资源账本
-- chapter contract / chapter context / 样稿参考
-- 审查、诊断、状态维护
-
-默认不负责：
-
-- 某个特定外部项目的专属 feed 结构
-- 在用户已有外部写作项目时，直接生成正式章节 canon
-- 在未明确授权的情况下，连续写多章正式正文
-- 用样稿覆盖外部项目已接受的正文
-
-如果用户需要把控制面喂给特定项目（例如 AI-Novel），优先使用对应的**bridge skill**；本 skill 只负责把控制面整理清楚。
+如果用户要把控制面喂给 AI-Novel 或从 AI-Novel 回流 accepted 结果，优先使用 `novel-ainovel-bridge`。
 
 ## 项目合同
 
@@ -83,7 +62,7 @@ projects/{novel-slug}/
 - 摘要：`06_reports/chapter_summaries/chNNN_summary.md`
 - 审查：`06_reports/reviews/chNNN_review.md`
 - 诊断：`06_reports/diagnostics/chNNN_diag.md`
-- 章节意图包：`07_exports/context_packs/chNNN_context.yaml`
+- 通用上下文包：`07_exports/context_packs/chNNN_context.yaml`
 
 ## 先读哪些 references
 
@@ -102,19 +81,19 @@ projects/{novel-slug}/
 
 先判断当前任务属于哪一类：
 
-1. `init`：创建项目壳子（只建骨架，不展开创意访谈）
+1. `init`：创建项目
 2. `brief`：立项定盘
 3. `bible`：设定圣经
 4. `characters`：角色与关系
-5. `outline`：卷纲 / 章纲 / chapter contract
-6. `write`：样稿 / 章节草稿 / tone reference
+5. `outline`：卷纲 / 章纲
+6. `write`：正文草稿
 7. `revise`：润色 / 改写 / 重写 / 扩写
 8. `review`：质量审查
 9. `state`：状态维护
 10. `diagnose`：章节级或项目级诊断
 11. `research`：联网考据
-12. `export`：导出成果或通用上下文包
-13. `resume`：恢复续写现场
+12. `export`：导出成果 / 通用上下文包
+13. `resume`：恢复续写
 
 如果用户只是闲聊、比题材、问方向是否成立，进入讨论模式，不默认落盘。
 
@@ -130,12 +109,37 @@ projects/{novel-slug}/
 
 则必须：
 
-- 立即创建项目目录与基础文件
+- 立即在 **`projects/{slug}/`** 下创建项目目录与基础文件（不要建在工作区根目录）
 - 不追问题材细节
 - 不进入 brainstorming 式设计对话
 - 不自动继续 `brief`、`bible`、`outline` 或 `write`
+- **只写约定内的骨架文件，不自创额外文件名**
 
-如果用户只给了标题 / slug，其他字段可先用**稳定占位值**或最保守推断完成 `project_manifest.yaml`，后续再在 `brief` 阶段细化。`init` 的目标是把壳子搭起来，不是把作品想完。
+`init` 时至少应在 **`projects/{slug}/`** 下创建并优先使用这些**固定文件名**：
+
+- `project_manifest.yaml`
+- `01_brief/project_brief.md`
+- `02_bible/story_bible.md`
+- `02_bible/character_cards.md`
+- `02_bible/relationship_matrix.md`
+- `03_outline/chapter_index.md`
+- `05_state/current_state.md`
+- `05_state/pending_hooks.md`
+
+`project_manifest.yaml` 必须满足 `docs/schema/project-manifest.md` 的字段要求；如果用户只给了标题 / slug，其他字段用**稳定占位值或最保守推断**补齐，并且**优先直接沿用模板默认值，不要自创枚举值**。例如：
+
+- `genre`: 从用户题材词推断，推不出就用 `待定`
+- `style`: 推不出就用 `default`
+- `audience`: 推不出就用 `general`
+- `language`: `zh-CN`
+- `research_mode`: **只能是** `off` / `on-demand` / `strict`，默认 `on-demand`，**禁止写成** `light` / `selective` / `auto`
+- `strong_sync`: `true`
+- `current_phase`: `initialized`
+- `current_volume`: `0`
+- `current_chapter`: `0`
+- `last_updated`: 当天日期
+
+`init` 的目标是把壳子搭起来，不是把作品想完。除非用户明确要求，否则不要在 `init` 阶段生成自创文件（如 `worldbuilding.md`、`themes.md`、`cultivation_system.md` 之类）。
 
 ## 命令面
 
@@ -164,7 +168,7 @@ projects/{novel-slug}/
 - “整理主角和反派的关系变化” → `characters`
 - “做第一卷卷纲” → `outline`
 - “列一下第12章章纲” → `outline`
-- “继续写第12章” → `write`（默认先判断是否已有外部正文项目）
+- “继续写第12章” → `write`
 - “把这一章改顺一点，但别动结构” → `revise` with `polish`
 - “重写这一章” → `revise` with `rewrite`
 - “检查第12章有没有 OOC” → `review`
@@ -182,9 +186,8 @@ projects/{novel-slug}/
 → 角色与关系
 → 卷纲
 → 章纲
-→ chapter contract / chapter context
-→ standalone 草稿 或 外部项目样稿参考
-→ 审稿 / 修稿 / 润色
+→ 写正文
+→ 审稿/修稿/润色
 → 章节闭环维护
 → 诊断
 → 进入下一章
@@ -195,60 +198,22 @@ projects/{novel-slug}/
 - 未初始化项目时，不直接写正文
 - `init` 只建壳子，不自动进入创意问答
 - 未有章纲时，不默认直接写正式章节
-- 用户已声明存在外部写作项目时，不默认直接写正式章节
 - review 有 P0 时，不进入下一章
 - 一章只有 `synced` 后才算真正完成
 
-## 外部引擎 / 项目协同模式
+## 外部项目协同说明
 
-当用户满足任一条件时，默认进入**外部项目协同模式**：
+如果用户已经有外部正文项目 / 写作引擎：
 
-- 明确提到已有独立正文项目 / 引擎 / app / pipeline
-- 明确说“项目跑正文”“项目写细节”“skill 只做大方向”
-- 提到某个具体写作项目、自动审稿流水线等
+- `novel` 仍然可以继续承担框架与正文创作
+- 但不要在同一轮里假装自己输出了那个项目的专属 feed
+- 项目专属 feed / schema / import mapping，交给对应 bridge skill
 
-进入该模式后：
+换句话说：
 
-- `outline` 负责把卷纲 / 章纲 / chapter intent 定清楚
-- `write` 默认只输出**样稿 / 气质参考段 / chapter contract / chapter context**
-- 正式章节 canon 默认交给外部项目产出
-- 本 skill 只在用户**明确要求 prose** 时，才写样章或完整草稿
-- 某个具体项目的 feed / schema / import mapping 交给对应 bridge skill
-
-在该模式里，正文能力不消失，但会降级为：
-
-- `tone_reference`
-- `scene_prototype`
-- `sample_draft`
-
-默认都不是最终 canon。
-
-## write 的默认语义
-
-`write` 有三种工作方式：
-
-1. **standalone-draft**
-   - 用户没有外部正文项目
-   - 或明确要求本 skill 直接写草稿
-   - 输出章节草稿到 `04_manuscript/drafts/`
-
-2. **sample / tone-reference**
-   - 用户有外部正文项目，但需要一段“味道参考”
-   - 输出短样稿、场景试写、对话试写
-   - 必须明确标注：`sample / not final canon`
-
-3. **control-only（默认）**
-   - 用户有外部正文项目，且未明确要求 prose
-   - 不直接写正式正文
-   - 改为输出 chapter contract / chapter context / 通用上下文包
-
-如果用户只说“继续写第12章”，但上下文已明确存在外部正文项目，先确认是否要：
-
-- A. 输出 chapter context 给外部项目
-- B. 写一段样稿当语气参考
-- C. 让本 skill 直接写完整草稿
-
-若未明确，默认按 A。
+- 想创作 → `novel`
+- 想只做框架 → `novel-framework`
+- 想对接 AI-Novel → `novel-ainovel-bridge`
 
 ## 上下文装配规则
 
@@ -321,11 +286,6 @@ projects/{novel-slug}/
 - `revise`：改写，允许局部重组
 - `rewrite`：重写，允许大改
 - `expand`：扩写，保持主干不变
-
-在外部项目协同模式下：
-
-- `revise` 默认是改控制面、chapter contract、context 包或样稿
-- 不默认直接改外部项目正式正文，除非用户明确要求手动接管正文改稿
 
 改稿前读取 `references/revision-rules.md`，不要混用词义。
 
@@ -402,7 +362,6 @@ projects/{novel-slug}/
 处理规则：
 
 - 状态卡和最新正式章节冲突：以最新正式章节为准，先修状态卡
-- skill 样稿和外部项目 accepted 正文冲突：以 accepted 正文为准，样稿降为参考材料
 - 章纲和设定圣经冲突：以设定圣经为准，除非用户明确要求重构
 - 摘要和原文冲突：以原文为准，重写摘要
 - research 来源冲突：记录冲突点，给保守写法，不装作已确定
@@ -419,10 +378,5 @@ projects/{novel-slug}/
 - 状态卡同步
 - 伏笔池同步
 - 诊断通过
-
-如果用户处于外部项目协同模式，则额外要求：
-
-- accepted 章节结果已回流到状态卡 / 伏笔池 / 摘要
-- 未通过审稿的正文不回流为 canon
 
 如果用户请求“接着写下一章”，而上一章未完成闭环，先补闭环，再继续。

@@ -1,0 +1,4 @@
+.omc/
+projects/
+**/__pycache__/
+*.pyc

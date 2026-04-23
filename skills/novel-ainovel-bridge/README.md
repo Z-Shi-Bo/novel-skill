@@ -11,7 +11,8 @@
 
 也就是说：
 
-- `novel` 负责：设定 / 角色 / 大纲 / 状态 / 伏笔 / 样稿参考
+- `novel` 负责：设定 / 角色 / 大纲 / 状态 / 伏笔 / 样稿参考 / 正文创作
+- `novel-framework` 负责：纯框架（背景 / 大纲 / 人设 / 钩子 / 情节骨架）
 - `novel-ainovel-bridge` 负责：AI-Novel 专属 packaging / sync
 - `AI-Novel` 项目负责：正文 / 细节 / 审稿 / 润色流水线
 

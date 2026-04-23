@@ -1,0 +1,30 @@
+chapter: "{{CHAPTER_NO}}"
+title: "{{CHAPTER_TITLE}}"
+
+must_keep:
+  - "{{MUST_KEEP_1}}"
+  - "{{MUST_KEEP_2}}"
+
+must_avoid:
+  - "{{MUST_AVOID_1}}"
+  - "{{MUST_AVOID_2}}"
+
+emotion_target: "{{EMOTION_TARGET}}"
+hook_goal: "{{HOOK_GOAL}}"
+
+continuity_notes:
+  - "{{CONTINUITY_NOTE_1}}"
+  - "{{CONTINUITY_NOTE_2}}"
+
+voice_notes:
+  "{{FOCUS_CHARACTER}}":
+    - "{{VOICE_NOTE_1}}"
+    - "{{VOICE_NOTE_2}}"
+
+required_beats:
+  - "{{REQUIRED_BEAT_1}}"
+  - "{{REQUIRED_BEAT_2}}"
+
+forbidden_moves:
+  - "{{FORBIDDEN_MOVE_1}}"
+  - "{{FORBIDDEN_MOVE_2}}"
