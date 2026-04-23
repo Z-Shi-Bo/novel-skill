@@ -1,7 +1,7 @@
 ---
 name: novel-framework
-description: "Create, plan, maintain, and export the control-plane of a long-form fiction project without generating正文内容. Use this whenever the user wants only the novel framework: overall background, worldbuilding, setting rules, character roles, personality traits, factions, volume or chapter outlines, hooks, plot progression, current state, pending hooks, or chapter contracts — and explicitly does NOT want prose output. ALWAYS treat explicit $novel-framework or /novel-framework commands as direct entrypoints to this skill instead of generic brainstorming or planning skills. If the user asks for any sample prose, draft chapters, rewrites, or full narrative content, switch to the full novel skill instead."
-version: 1.0.0
+description: "Use when the user wants only the control-plane of a novel project—background, worldbuilding, setting rules, characters, hooks, outlines, chapter contracts, current state, or pending hooks—and explicitly does not want prose output. Also use whenever the user explicitly invokes $novel-framework or /novel-framework. If the user asks for prose, drafts, rewrites, or narrative content, switch to novel."
+version: 1.1.0
 user-invocable: true
 argument-hint: "[init|brief|bible|characters|outline|state|diagnose|research|export|resume] [项目或需求]"
 ---
@@ -141,6 +141,7 @@ projects/{novel-slug}/
 - `last_updated` 用当天日期 `YYYY-MM-DD`
 
 不要写成嵌套结构（如 `project: { ... }`），不要自创 manifest schema。
+
 ## 命令面
 
 显式命令优先：
@@ -163,6 +164,14 @@ projects/{novel-slug}/
 - “不要正文，只做故事骨架” → `outline`
 - “同步一下控制面状态” → `state`
 - “看看设定和伏笔有没有打架” → `diagnose`
+
+## outline-only 规则
+
+当用户只要卷纲 / 章纲 / chapter contract 时：
+
+- 只更新 `03_outline/*` 与必要控制面引用
+- 不补 prose、样章、tone reference
+- 不把 `outline` 偷偷扩成 `write`
 
 ## 默认工作流
 

@@ -1,7 +1,7 @@
 ---
 name: novel
-description: "Create, plan, write, review, maintain, and resume long-form fiction projects with a file-based one-book-one-folder workflow. This is the full-suite novel skill: use it whenever the user wants to start a novel, build story bible and outlines, write or revise chapters, maintain current story state, track hooks and continuity, diagnose long-form consistency, or resume a fiction project across sessions. ALWAYS treat explicit $novel or /novel commands as direct entrypoints to this skill instead of generic brainstorming or planning skills. Also use it for reality-grounded fiction that needs on-demand research and fact verification. If the user needs to export a project into AI-Novel specific feed files or sync AI-Novel accepted results back, use the separate novel-ainovel-bridge skill for that project-specific adaptation layer."
-version: 3.3.0
+description: "Use when the user wants to create or maintain a long-form fiction project: initialize a novel workspace, build brief/bible/characters/outlines, write or revise chapters, review continuity, sync story state, resume a book, or do reality-grounded fiction research. Also use whenever the user explicitly invokes $novel or /novel. If the request is AI-Novel specific export or accepted-result sync, switch to novel-ainovel-bridge."
+version: 3.4.0
 user-invocable: true
 argument-hint: "[init|brief|bible|characters|outline|write|revise|review|state|diagnose|research|export|resume] [项目或需求]"
 ---

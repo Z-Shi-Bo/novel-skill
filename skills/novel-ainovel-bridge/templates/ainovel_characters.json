@@ -1,14 +1,20 @@
 [
   {
+    "character_id": "{{CHARACTER_ID}}",
     "name": "{{CHARACTER_NAME}}",
     "aliases": [],
     "role": "{{CHARACTER_ROLE}}",
+    "public_goal": "{{PUBLIC_GOAL}}",
+    "hidden_drive": "{{HIDDEN_DRIVE}}",
+    "weakness": "{{WEAKNESS}}",
+    "current_status": "{{CURRENT_STATUS}}",
     "description": "{{CHARACTER_DESCRIPTION}}",
     "arc": "{{CHARACTER_ARC}}",
     "traits": [
       "{{TRAIT_1}}",
       "{{TRAIT_2}}"
     ],
-    "tier": "core"
+    "tier": "core",
+    "note": "{{NOTE}}"
   }
 ]

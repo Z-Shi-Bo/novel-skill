@@ -1,5 +1,10 @@
+payload_id: "{{PAYLOAD_ID}}"
 chapter: {{CHAPTER_NO}}
+chapter_revision: "{{CHAPTER_REVISION}}"
 accepted: true
+accepted_at: "{{ACCEPTED_AT}}"
+source_paths:
+  - "{{SOURCE_PATH_1}}"
 summary: "{{SUMMARY}}"
 state_updates:
   - "{{STATE_UPDATE_1}}"
@@ -11,6 +16,3 @@ timeline_events:
   - "{{TIMELINE_EVENT_1}}"
 relationship_changes:
   - "{{REL_CHANGE_1}}"
-source_paths:
-  - "{{SOURCE_PATH_1}}"
-accepted_at: "{{ACCEPTED_AT}}"

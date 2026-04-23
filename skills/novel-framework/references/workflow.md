@@ -33,6 +33,7 @@ init
 2. 本 skill 不生成 prose。
 3. 未有章纲时，不生成 chapter context。
 4. 框架诊断不过时，不建议切换到正文创作。
+5. 用户只要求 `outline` 时，不自动补 prose / 样章 / tone reference。
 
 ## 切换规则
 

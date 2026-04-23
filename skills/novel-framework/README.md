@@ -47,6 +47,26 @@ npx skills add https://github.com/shibo1998/shibo-skills --skill novel-framework
 
 它们都属于控制面交付物，不包含正文。
 
+## 最小命令流
+
+```text
+/novel-framework init
+→ /novel-framework brief
+→ /novel-framework bible
+→ /novel-framework characters
+→ /novel-framework outline
+→ /novel-framework export
+```
+
+如果用户只说“先做卷纲 / 章纲”，就停在 `outline`，不要擅自补 prose。
+
+## 标准 schema
+
+- `docs/schema/chapter-context.md`
+- `docs/schema/character-card.md`
+- `docs/schema/outline-entry.md`
+- `docs/schema/framework-export.md`
+
 ## 内容
 
 为了尽量复用 `novel` 已有形式，`novel-framework` 继续沿用同类模板、项目结构和控制面 schema，只是在行为上禁用正文生成。

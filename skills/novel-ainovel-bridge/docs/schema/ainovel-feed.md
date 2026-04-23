@@ -37,6 +37,12 @@
 | `overrides/writer.override.md` | 写作加严规则 | 项目级文风、禁用词、节奏要求 |
 | `overrides/reviewer.override.md` | 审稿加严规则 | 外部项目 review 时的额外门槛 |
 
+字段归一化参考：
+
+- `docs/schema/chapter-context.md`
+- `docs/schema/character-card.md`
+- `docs/schema/outline-entry.md`
+
 ## `manifest.yaml` 必填字段
 
 | 字段 | 类型 | 含义 |
@@ -55,13 +61,19 @@
 
 每个角色对象至少包含：
 
+- `character_id`
 - `name`
 - `aliases`
 - `role`
+- `public_goal`
+- `hidden_drive`
+- `weakness`
+- `current_status`
 - `description`
 - `arc`
 - `traits`
 - `tier`
+- `note`
 
 ## `world_rules.json` 推荐字段
 
@@ -86,8 +98,12 @@
 - chapter
   - `chapter`
   - `title`
+  - `goal`
+  - `conflict`
   - `coreEvent`
   - `hook`
+  - `payoff`
+  - `endState`
   - `scenes`
 
 ## `foreshadows.json` 推荐字段
@@ -132,6 +148,8 @@
 
 推荐附加：
 
+- `payload_id`
+- `chapter_revision`
 - `timeline_events`
 - `relationship_changes`
 - `source_paths`
@@ -141,7 +159,7 @@
 
 当 AI-Novel 产出 accepted / final 结果时，优先回流：
 
-- `summary` → `06_reports/chapter_summaries/`
+- `summary` → `06_reports/chapter_summaries/chNNN_summary.md`
 - `pending hooks` 变化 → `05_state/pending_hooks.md`
 - `current state` 变化 → `05_state/current_state.md`
 - `timeline events` → `05_state/timeline.md` 或等价文件
@@ -160,3 +178,4 @@
 2. 外部项目 accepted 的正文，才能回流为 canon。
 3. 样稿 / 试写 / tone reference 不能直接回流为正文 canon。
 4. handoff 包优先增量更新，不整包重写。
+5. 多章节 sync 默认按章节号升序处理。

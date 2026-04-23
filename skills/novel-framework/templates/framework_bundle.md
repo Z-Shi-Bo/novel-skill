@@ -26,6 +26,13 @@
 - Current Chapter: {{CHAPTER_TITLE}}
 - Hook Goal: {{HOOK_GOAL}}
 
+## Current Chapter Contract
+- Must Keep: {{MUST_KEEP_1}}
+- Must Avoid: {{MUST_AVOID_1}}
+- Emotion Target: {{EMOTION_TARGET}}
+- State Focus: {{STATE_FOCUS_1}}
+- Active Hook: {{ACTIVE_HOOK_1}}
+
 ## Current State
 - {{STATE_1}}
 - {{STATE_2}}

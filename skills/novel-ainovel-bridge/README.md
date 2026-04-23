@@ -45,8 +45,12 @@ npx skills add https://github.com/shibo1998/shibo-skills --skill novel-ainovel-b
 ### sync
 
 1. 确认 AI-Novel 侧已经得到 accepted / final 结果
-2. 准备 accepted payload（至少包含 `chapter`、`accepted=true`、`summary`、`state_updates`、`hook_updates`）
+2. 准备 accepted payload（至少包含 `chapter`、`accepted=true`、`summary`、`state_updates`、`hook_updates`；推荐补 `payload_id`、`chapter_revision`、`accepted_at`）
 3. 再执行 bridge 回流控制面
+
+默认把同一 `payload_id` 当作同一同步单元；重复执行应按 upsert 处理，不应重复追加。
+如果一次同步多章，默认按章节号升序处理。
+章节摘要目标文件统一使用 `06_reports/chapter_summaries/chNNN_summary.md`。
 
 桥接层不负责写正文，它只负责：
 - 把控制面转成 AI-Novel 可消费格式
@@ -74,5 +78,7 @@ npx skills add https://github.com/shibo1998/shibo-skills --skill novel-ainovel-b
 
 - `SKILL.md`：bridge 行为规则
 - `docs/schema/ainovel-feed.md`：feed 结构说明
+- `docs/schema/accepted-sync-payload.md`：accepted 回流合同
+- `docs/schema/chapter-context.md` / `character-card.md` / `outline-entry.md`：归一化字段说明
 - `references/workflow.md`：export / sync 流程
 - `templates/*`：feed 模板

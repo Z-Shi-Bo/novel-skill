@@ -12,8 +12,12 @@
           {
             "chapter": {{CHAPTER_NO}},
             "title": "{{CHAPTER_TITLE}}",
+            "goal": "{{GOAL}}",
+            "conflict": "{{CONFLICT}}",
             "coreEvent": "{{CORE_EVENT}}",
             "hook": "{{HOOK}}",
+            "payoff": "{{PAYOFF}}",
+            "endState": "{{END_STATE}}",
             "scenes": [
               "{{SCENE_1}}",
               "{{SCENE_2}}"

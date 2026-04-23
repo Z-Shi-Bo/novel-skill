@@ -1,7 +1,7 @@
 ---
 name: novel-ainovel-bridge
-description: "Bridge a generic novel control-plane project into AI-Novel. Use this whenever the user mentions AI-Novel / ainovel, wants to 导出给 AI-Novel, 喂给项目, 生成 ainovel_feed, or wants to sync accepted chapter results back from AI-Novel into a generic novel project. This skill does not create story canon from scratch; it reads the outputs of the generic novel skill and maps them into AI-Novel specific files and conventions. Trigger aggressively for requests like 喂给 AI-Novel、导出给项目、生成 handoff/feed、同步项目结果回控制面, or explicit slash usage such as /novel-ainovel-bridge."
-version: 1.0.0
+description: "Use when the user wants to export a generic novel project into AI-Novel feed files or sync AI-Novel accepted chapter results back into the generic control-plane. Trigger on AI-Novel / ainovel, 导出给 AI-Novel, 喂给项目, ainovel_feed, accepted 回流, or explicit $novel-ainovel-bridge / /novel-ainovel-bridge."
+version: 1.1.0
 user-invocable: true
 argument-hint: "[export|sync|resume] [项目或路径]"
 ---
@@ -75,7 +75,7 @@ argument-hint: "[export|sync|resume] [项目或路径]"
 
 把 AI-Novel 已 accepted 的结果回流到通用控制面，例如：
 
-- `06_reports/chapter_summaries/`
+- `06_reports/chapter_summaries/chNNN_summary.md`
 - `05_state/current_state.md`
 - `05_state/pending_hooks.md`
 - 必要时更新时间线、资源账本、关系表
@@ -120,12 +120,21 @@ argument-hint: "[export|sync|resume] [项目或路径]"
 
 推荐附加：
 
+- `payload_id`
+- `chapter_revision`
 - `timeline_events`
 - `relationship_changes`
 - `source_paths`
 - `accepted_at`
 
 如果只有 draft / polish 中间态，而没有 accepted / final 结果，必须拒绝回流。
+
+## sync 幂等规则
+
+- 同一 `payload_id` 重复执行时，按同一同步单元处理，不重复追加
+- 如果没有 `payload_id`，至少用 `chapter + accepted_at + source_paths` 识别同一批结果
+- 多章节 sync 默认按 `chapter` 升序应用
+- 同一章节出现更高 `chapter_revision` 或更晚 accepted 结果时，视为 supersede 旧结果
 
 ## 读取优先级
 
@@ -163,6 +172,7 @@ argument-hint: "[export|sync|resume] [项目或路径]"
 
 - 只回流 **accepted / final** 结果
 - draft / polish 中间态不回流为 canon
+- 章节摘要文件统一使用 `chNNN_summary.md` 命名，不写成 `chNNN.md`
 - 如果 AI-Novel 输出与控制面冲突：
   - accepted 正文事实优先于旧状态卡
   - 但不自动改世界观根规则，除非冲突已经在 accepted 结果中稳定存在且用户确认保留

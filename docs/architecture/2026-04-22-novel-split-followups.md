@@ -14,21 +14,23 @@
 - `novel-ainovel-bridge` 的 export / missing-control-plane 回归已通过
 - `novel-ainovel-bridge` 的 sync accepted payload 已完成本地验证
 - bridge 的 `ainovel_feed` 文档已细化到字段级
+- `novel` / `novel-framework` / `novel-ainovel-bridge` 已补齐统一 schema：`chapter-context` / `character-card` / `outline-entry`
+- bridge 的 `sync` 合同已补充幂等与多章节顺序约定
 
 ## 后续建议修改
 
-### P1：继续补 `novel-framework` 回归
+### P1：继续补 `novel-framework` 本地回归
 
 当前已完成：
 
 1. `framework smoke init`
 2. `framework` 遇到“写正文”请求时明确拒绝并提示用 `novel`
 
-仍建议补：
+仍建议补（本地验证即可，不必作为分发资产）：
 
 3. `framework outline only`
 
-### P1：bridge 的 export / sync 细化
+### P1：bridge 的 export / sync 本地回归
 
 当前已完成：
 
@@ -44,14 +46,14 @@
 - timeline
 - relationship changes
 
-仍建议补：
+仍建议补（本地验证即可，不必作为分发资产）：
 
 4. 把 `bridge sync` 的本地验证进一步固化成稳定自动回归
 5. 增加多章节 / 多次 sync 的幂等性验证
 
-### P1：统一三层之间的 schema
+### P2：继续固化共享 schema 的本地校验
 
-重点统一：
+当前已统一：
 
 - chapter context
 - current state
@@ -59,7 +61,7 @@
 - outline entry
 - character card
 
-避免 `novel` / `novel-framework` / `bridge` 三边未来漂移。
+后续重点转向：用本地回归防止三边未来漂移。
 
 ### P2：README 增加组合用法示例
 
@@ -113,7 +115,7 @@
 
 1. 补 `novel-framework` 的 outline only 测试
 2. 把 `bridge sync` 的本地验证固化成更稳定自动回归
-3. 统一三层 schema
+3. 给共享 schema 增加本地 contract 校验
 4. 再考虑命名微调
 
 ## 判断是否需要继续改

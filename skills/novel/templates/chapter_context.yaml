@@ -28,3 +28,11 @@ required_beats:
 forbidden_moves:
   - "{{FORBIDDEN_MOVE_1}}"
   - "{{FORBIDDEN_MOVE_2}}"
+
+active_hooks:
+  - "{{ACTIVE_HOOK_1}}"
+  - "{{ACTIVE_HOOK_2}}"
+
+state_focus:
+  - "{{STATE_FOCUS_1}}"
+  - "{{STATE_FOCUS_2}}"
